@@ -1,4 +1,9 @@
 # Awesome-SwiftUI-Library-For-Beginners
+[「做个应用」](https://apps.apple.com/cn/app/%E5%81%9A%E4%B8%AA%E5%BA%94%E7%94%A8-swiftui-0-%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E5%BA%94%E7%94%A8/id1578873606)是一款教 O 基础的用户使用 SwiftUI 开发应用的 App，在这里我们将介绍作为初学者会使用到的第三方库，可以更简单便捷的帮助你开发应用。
+![做个应用商店截图](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/assets/3838258/6db4e5b3-dac0-40e9-82b3-087904497049)
+
+关于[「做个应用」](https://apps.apple.com/cn/app/%E5%81%9A%E4%B8%AA%E5%BA%94%E7%94%A8-swiftui-0-%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E5%BA%94%E7%94%A8/id1578873606)更多的详细介绍，可以[查看文章](https://juejin.cn/post/7308676997051072551).
+
 
 ## 1. 数据存储
 ### 1. Keychain
