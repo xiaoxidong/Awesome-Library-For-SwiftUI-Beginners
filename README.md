@@ -26,59 +26,169 @@
 # 1. 数据存储
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+如果我们希望保存一些数据，在用户删除应用之后依然可以保存在设备上，我们可以选择 Keychain，比如我们的应用会保存用户的下载时间，比如有些应用会提示一个新下载的用户上次登陆的账号，这些信息都可以保存在 Keychain 里，即使用户删除设备之后，信息依然存在。
+
+需要注意的时候，只能保存一些简单的数据。
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+- 保存一个字符串
+```swift
+let keychain = Keychain(service: "com.example.github-token")
+keychain["kishikawakatsumi"] = "01234567-89ab-cdef-0123-456789abcdef"
+```
+
+- 保存 Data 数据
+```swift
+keychain[data: "secret"] = NSData(contentsOfFile: "secret.bin")
+```
+
+- 获取数据
+```swift
+let token = keychain["kishikawakatsumi"]
+let token = keychain[string: "kishikawakatsumi"]
+let secretData = keychain[data: "secret"]
+```
+需要注意获取到的可能为 nil 需要处理判断。
+
+- 删除数据
+```swift
+keychain["kishikawakatsumi"] = nil
+```
+```swift
+do {
+    try keychain.remove("kishikawakatsumi")
+} catch let error {
+    print("error: \(error)")
+}
+```
+
+还有一些其他的操作，可以查看链接。
+
 </details>
 
 <details>
 <summary>2. UserDefaults</summary>
+
+  # 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 # 2. 浮层
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 
 # 3. Toast
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 # 4. 日期
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 # 5. 网络请求
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 
 # 6. Markdown
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 
 # 7. 布局样式
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 
 # 8. Bug 追踪
 <details>
 <summary>1. Keychain</summary>
-1. Keychain
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
 </details>
 
 
 
 # 9. Mac 常用
+<details>
+<summary>1. Keychain</summary>
+
+# 简介
+
+# 链接
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+
+# 基础使用
+
+</details>
