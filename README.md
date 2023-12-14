@@ -166,7 +166,7 @@ suiteName 即为我们设置的 Group 名称。
 这个是我们最常用的底部出现的浮层样式设置，我们做了一些简单的修改。
 
 ### 链接
-[SlideOverCard](https://github.com/kishikawakatsumi/KeychainAccess)
+[SlideOverCard](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/BasicCode/BasicCode/SlideOverCard.swift)
 
 ### 基础使用
 ```swift
@@ -429,6 +429,7 @@ struct ContentView: View {
 ```
 </details>
 
+<details>
 <summary>3. SDWebImageSwiftUI</summary>
 
 ### 简介
@@ -724,6 +725,7 @@ struct ContentView: View {
 
 </details>
 
+<details>
 <summary>3. 设置全局快捷键</summary>
 
 ### 简介
