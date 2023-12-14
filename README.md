@@ -74,17 +74,17 @@ do {
 <details>
 <summary>2. Defaults</summary>
 
-## 简介
+### 简介
 当我们希望存储一些用户基础数据的时候，比如是否查看了某个新手引导，我们可以选择将数据存储在 UserDefaults 里，这里的数据会随着用户删除应用的时候被删除，同样也只能存储一些小量的数据。
 
 UserDefaults 的另外一个很重要的作用是多 Target 的数据同步，比如小组件，Apple 并没有提供一个直接的数据交流，我们可以通过 UserDefaults 来传递小组件需要的数据，具体的内容可以查看我们应用里的小组件章节。
 
-## 链接
+### 链接
 Defaults 是一个开源的 UserDefaults 第三方库，可以更加简单的便捷的设置数据存储和读取。
 
 [Defaults](https://github.com/sindresorhus/Defaults)
 
-## 基础使用
+### 基础使用
 - 自定义存储的 Key 类型
 ```swift
 import Defaults
@@ -160,28 +160,136 @@ suiteName 即为我们设置的 Group 名称。
 
 # 2. 浮层
 <details>
-<summary>1. Keychain</summary>
+<summary>1. SlideOverCard</summary>
 
-## 简介
+### 简介
+这个是我们最常用的底部出现的浮层样式设置，我们做了一些简单的修改。
 
-## 链接
-[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+### 链接
+[SlideOverCard](https://github.com/kishikawakatsumi/KeychainAccess)
 
-## 基础使用
-
+### 基础使用
+```swift
+.bottomSlideOverCard(isPresented: $elementVM.newViewShowWechat) {
+    WeiChatView(wechat: $elementVM.newViewShowWechat) { }
+}
+```
 </details>
 
+<details>
+<summary>2. BottomSheet</summary>
+
+### 简介
+在我们的做个应用来，iPhone 上底部的预览窗口，使用的开源库是 BottomSheet，效果也比较好。
+
+### 链接
+[BottomSheet](https://github.com/lucaszischka/BottomSheet)
+
+### 基础使用
+```swift
+.bottomSheet(
+    bottomSheetPosition: Binding<BottomSheetPosition>,
+    switchablePositions: [BottomSheetPosition],
+    title: String?,
+    content: () -> MContent
+)
+```
+</details>
+
+<details>
+<summary>3. SwiftUIOverlayContainer</summary>
+
+### 简介
+肘子老师开源的浮层库，样式比较多，且可以在任意地方直接打开，不需要像我们之前一样，需要使用 Bool 值来控制打开，方便很多。
+
+### 链接
+[SwiftUIOverlayContainer](https://github.com/fatbobman/SwiftUIOverlayContainer)
+
+### 基础使用
+```swift
+struct ContentView1: View {
+    @Environment(\.overlayContainerManager) var manager
+    var body: some View {
+        VStack {
+            Button("push view in containerB") {
+                manager.show(view: MessageView(), in: "containerB", using: ViewConfiguration())
+            }
+        }
+    }
+}
+```
+</details>
 
 # 3. Toast
 <details>
-<summary>1. Keychain</summary>
+<summary>1. AlertToast</summary>
 
-## 简介
+### 简介
+在我们的各个应用来，这个开源库是最推荐使用的，你在提示里看到的中间显示的背景模糊样式的就是，样式精美且可以自定义内容。
 
-## 链接
-[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+### 链接
+[AlertToast](https://github.com/elai950/AlertToast)
 
-## 基础使用
+### 基础使用
+- 直接使用
+```swift
+import AlertToast
+import SwiftUI
+
+struct ContentView: View{
+
+    @State private var showToast = false
+
+    var body: some View{
+        VStack{
+
+            Button("Show Toast"){
+                 showToast.toggle()
+            }
+        }
+        .toast(isPresenting: $showToast){
+
+            // `.alert` is the default displayMode
+            AlertToast(type: .regular, title: "Message Sent!")
+
+            //Choose .hud to toast alert from the top of the screen
+            //AlertToast(displayMode: .hud, type: .regular, title: "Message Sent!")
+
+            //Choose .banner to slide/pop alert from the bottom of the screen
+            //AlertToast(displayMode: .banner(.slide), type: .regular, title: "Message Sent!")
+        }
+    }
+}
+```
+
+- Toast 事件
+
+```swift
+.toast(isPresenting: $showAlert, duration: 2, tapToDismiss: true, alert: {
+   //AlertToast goes here
+}, onTap: {
+   //onTap would call either if `tapToDismis` is true/false
+   //If tapToDismiss is true, onTap would call and then dismis the alert
+}, completion: {
+   //Completion block after dismiss
+})
+```
+
+- Toast 样式
+```swift
+AlertToast(displayMode: DisplayMode,
+           type: AlertType,
+           title: Optional(String),
+           subTitle: Optional(String),
+           style: Optional(AlertStyle))
+
+//This is the available customizations parameters:
+AlertStyle(backgroundColor: Color?,
+            titleColor: Color?,
+            subTitleColor: Color?,
+            titleFont: Font?,
+            subTitleFont: Font?)
+```
 
 </details>
 
@@ -189,13 +297,13 @@ suiteName 即为我们设置的 Group 名称。
 <details>
 <summary>1. SwiftDate</summary>
 
-## 简介
+### 简介
 日期在应用开发里是一个相对比较繁琐的内容，我们获取的时间是 0 时区的时间，要转换为当地时区的时间进行显示和操作，SwiftDate 提供了一些关于日期常用的操作，可以大大简化我们对 Date 的操作，对于新手比较有用。
 
-## 链接
+### 链接
 [SwiftDate](https://github.com/malcommac/SwiftDate)
 
-## 基础使用
+### 基础使用
 - 转化为日期
 - ```swift
 // All default datetime formats (15+) are recognized automatically
@@ -256,28 +364,186 @@ let _ = DateInRegion.sortedByNewest(list: datesArray)
 
 # 5. 网络请求
 <details>
-<summary>1. Keychain</summary>
+<summary>1. Alamofire</summary>
 
-## 简介
+### 简介
+Alamofire 是一个老牌的网络请求开源库，比较稳定易用。在我们的开源项目 [Shoots](https://github.com/xiaoxidong/Shoots) 里我们使用了这个库来进行网络请求数据。
 
-## 链接
-[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+### 链接
+[Alamofire](https://github.com/Alamofire/Alamofire)
 
-## 基础使用
+### 基础使用
+- 下面的代码是我们使用 Alamofire 来请求应用商店，根据应用的 ID 来获取应用的 Icon 图片。
+```swift
+func logo(app: AppInfo, _ success: @escaping (String?) -> Void) async {
+    if let id = app.appStoreId {
+        if !apps.contains(app) {}
+        AF.request("https://itunes.apple.com/us/lookup?id=\(id)", method: .get, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json"]).responseDecodable(of: AppDetailInfo.self) { response in
+            switch response.result {
+            case let .success(object):
+                success(object.results.first?.artworkUrl512)
+            case let .failure(error):
+                print(error)
+            }
+        }
+    } else {
+        success(nil)
+    }
+}
+```
+</details>
 
+<details>
+<summary>2. Kingfisher</summary>
+
+### 简介
+很多时候我们需要根据 URL 来请求网络图片显示，Kingfisher 是喵神开源的一个图片请求的第三方库。
+
+### 链接
+[Kingfisher](https://github.com/onevcat/Kingfisher)
+
+### 基础使用
+- 直接使用
+```swift
+var body: some View {
+    KFImage(URL(string: "https://example.com/image.png")!)
+}
+```
+
+- 更多的设置选择
+```swift
+struct ContentView: View {
+    var body: some View {
+        KFImage.url(url)
+          .placeholder(placeholderImage)
+          .setProcessor(processor)
+          .loadDiskFileSynchronously()
+          .cacheMemoryOnly()
+          .fade(duration: 0.25)
+          .lowDataModeSource(.network(lowResolutionURL))
+          .onProgress { receivedSize, totalSize in  }
+          .onSuccess { result in  }
+          .onFailure { error in }
+    }
+}
+```
+</details>
+
+<summary>3. SDWebImageSwiftUI</summary>
+
+### 简介
+另外一个网络图片请求的开源库是 SDWebImageSwiftUI，在我们的开源项目 [Shoots](https://github.com/xiaoxidong/Shoots) 里我们使用了这个库来进行图片的网络请求显示。
+
+### 链接
+[SDWebImageSwiftUI](https://github.com/SDWebImage/SDWebImageSwiftUI)
+
+### 基础使用
+```swift
+var body: some View {
+    WebImage(url: URL(string: "https://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic")) { image in
+        image.resizable() // Control layout like SwiftUI.AsyncImage, you must use this modifier or the view will use the image bitmap size
+    } placeholder: {
+            Rectangle().foregroundColor(.gray)
+    }
+    // Supports options and context, like `.delayPlaceholder` to show placeholder only when error
+    .onSuccess { image, data, cacheType in
+        // Success
+        // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
+    }
+    .indicator(.activity) // Activity Indicator
+    .transition(.fade(duration: 0.5)) // Fade Transition with duration
+    .scaledToFit()
+    .frame(width: 300, height: 300, alignment: .center)
+}
+```
 </details>
 
 
 # 6. Markdown
 <details>
-<summary>1. Keychain</summary>
+<summary>1. Parma</summary>
 
-## 简介
+### 简介
+在我们的 SwiftUI 应用里，我们显示的内容都是 Markdown 文件，其中用到的 Markdown 解析使用的是 Parma 这个开源库。
 
-## 链接
-[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+### 链接
+[Parma](https://github.com/dasautoooo/Parma)
 
-## 基础使用
+### 基础使用
+- 解析内容
+```swift
+import Parma
+
+struct ContentView: View {
+    var markdown = "I'm **Strong**."
+
+    var body: some View {
+        Parma(markdown, render: MyRender())
+    }
+}
+
+struct MyRender: ParmaRenderable {
+    ...
+}
+```
+- 自定义样式
+```swift
+/// Define the heading text style.
+/// - Parameters:
+///   - level: The level of heading.
+///   - textView: The textView generated from captured heading string.
+func heading(level: HeadingLevel?, textView: Text) -> Text
+
+/// Define the paragraph text style.
+/// - Parameter text: The text string captured from paragraph.
+func paragraph(text: String) -> Text
+
+/// Define the text style for plain text. Do NOT recommend to alter this if there's no special purpose.
+/// - Parameter text: The text string captured from markdown.
+func plainText(_ text: String) -> Text
+
+/// Define the strong text style.
+/// - Parameter textView: The textView generated from captured strong string.
+func strong(textView: Text) -> Text
+
+/// Define the emphasis text style.
+/// - Parameter textView: The textView generated from captured emphasis string.
+func emphasis(textView: Text) -> Text
+
+/// Define the link text style.
+/// - Parameters:
+///   - textView: The textView generated from captured link string.
+///   - destination: The destination of the link.
+func link(textView: Text, destination: String?) -> Text
+
+/// Define the code text style.
+/// - Parameter text: The text string captured from code.
+func code(_ text: String) -> Text
+
+/// Define the style of heading view.
+/// - Parameters:
+///   - level: The level of heading.
+///   - view: The view contains heading text.
+func headingBlock(level: HeadingLevel?, view: AnyView) -> AnyView
+
+/// Define the style of paragraph view.
+/// - Parameter view: The view contains view(s) which belong(s) to this paragraph.
+func paragraphBlock(view: AnyView) -> AnyView
+
+/// Define the style of list item.
+/// - Parameter attributes: Attributes of the list containing the item. Those must be considered for proper item rendering.
+/// - Parameter index: Normalized index of the list item. For exemple, the index of the third item of a one level list would be `[2]` and the second item of a sublist appearing fourth in it's parent list would be `[3, 1]`.
+/// - Parameter view: The view contains view(s) which belong(s) to this item.
+func listItem(attributes: ListAttributes, index: [Int], view: AnyView) -> AnyView
+
+/// Define the style of image view.
+/// - Parameter urlString: The url string for this image view.
+/// - Parameter altTextView: The view contains alt text.
+func imageView(with urlString: String, altTextView: AnyView?) -> AnyView
+```
+
+- 我们使用的样式
+在我们的做个应用里，样式上做了很多的修改，包括支持本地图片的显示等，后续我们整理好之后会开源出来。
 
 </details>
 
@@ -286,12 +552,12 @@ let _ = DateInRegion.sortedByNewest(list: datesArray)
 <details>
 <summary>1. Keychain</summary>
 
-## 简介
+### 简介
 
-## 链接
+### 链接
 [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
 
-## 基础使用
+### 基础使用
 
 </details>
 
@@ -300,27 +566,186 @@ let _ = DateInRegion.sortedByNewest(list: datesArray)
 <details>
 <summary>1. Bugsnag</summary>
 
-## 简介
-当我们的应用上线之后
+### 简介
+当我们的应用上线之后，我们需要添加 Bug 的追踪服务来检测是否有问题，现在我们整个在用的是 Bugsnag，免费的情况够用，且操作相对简单。
 
-## 链接
+### 链接
 [Bugsnag](https://app.bugsnag.com/)
 
-## 基础使用
-
+### 基础使用
+- 直接注册账号，按照用户添加相关的内容即可。
+- 上传 dSYMs，否则无法显示出是哪行代码出现问题。在我们打包成功之后，可以选择应用，右键在文件夹显示，右键文件显示包内容，在里面会看到 dSYMs 文件；
+- 在 Terminal 这个文件里，输入 bugsnag-dsym-upload 然后将 dSYMs 文件拖拽到 Terminal 里，回车上传。
 </details>
 
 
 
 # 9. Mac 常用
 <details>
-<summary>1. Keychain</summary>
+<summary>1. StatusBar 应用下拉关闭</summary>
 
-## 简介
+### 简介
 
-## 链接
-[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+MenuBarExtra 可以帮助我们在状态栏里设置一个应用的入口，但是现在 SwiftUI 暂时没有提供一个可以自动关闭状态栏下拉的方法，之后点击外部区域隐藏下拉应用，很多时候我们希望在下拉里点击操作之后直接自动关闭，因此我们可以使用下面的方法来控制状态栏应用的显示和隐藏。
 
-## 基础使用
+
+### 链接
+[MenuBarExtraAccess](https://github.com/orchetect/MenuBarExtraAccess)
+
+### 基础使用
+- 下拉 Menu 样式
+```swift
+@main struct MyApp: App {
+    @State var isMenuPresented: Bool = false
+
+    var body: some Scene {
+        WindowGroup {
+            Button("Show Menu") { isMenuPresented = true }
+        }
+
+        MenuBarExtra("MyApp Menu", systemImage: "folder") {
+            Button("Menu Item 1") { print("Menu Item 1") }
+            Button("Menu Item 2") { print("Menu Item 2") }
+        }
+        .menuBarExtraStyle(.menu)
+        .menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in // <-- the magic ✨
+             // access status item or store it in a @State var
+        }
+    }
+}
+```
+
+- Window 样式
+```swift
+@main struct MyApp: App {
+    @State var isMenuPresented: Bool = false
+
+    var body: some Scene {
+        MenuBarExtra("MyApp Menu", systemImage: "folder") {
+            MyMenu(isMenuPresented: $isMenuPresented)
+            	.introspectMenuBarExtraWindow { window in // <-- the magic ✨
+                    window.animationBehavior = .alertPanel
+                }
+        }
+        .menuBarExtraStyle(.window)
+        .menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in // <-- the magic ✨
+             // access status item or store it in a @State var
+        }
+    }
+}
+
+struct MyMenu: View {
+    @Binding var isMenuPresented: Bool
+
+    var body: some View {
+        Button("Perform Action") {
+            isMenuPresented = false
+            performSomeAction()
+        }
+    }
+}
+```
+- 多个入口
+```swift
+var body: some Scene {
+    MenuBarExtra("MyApp Menu A", systemImage: "folder") {
+        MyMenu(isMenuPresented: $isMenuPresented)
+            .introspectMenuBarExtraWindow(index: 0) { window in // <-- add index 0
+                // ...
+            }
+    }
+    .menuBarExtraStyle(.window)
+    .menuBarExtraAccess(index: 0, isPresented: $isMenuPresented) // <-- add index 0
+
+    MenuBarExtra("MyApp Menu B", systemImage: "folder") {
+        MyMenu(isMenuPresented: $isMenuPresented)
+            .introspectMenuBarExtraWindow(index: 1) { window in // <-- add index 1
+                // ...
+            }
+    }
+    .menuBarExtraStyle(.window)
+    .menuBarExtraAccess(index: 1, isPresented: $isMenuPresented) // <-- add index 1
+}
+```
+</details>
+
+
+<details>
+
+<summary>2. 开机启动</summary>
+
+### 简介
+
+在 Mac 应用里一个很常用的设计是开机启动，当用户开机之后，我们的应用程序自动启动，可以使用 LaunchAtLogin 来进行设置。
+
+
+### 链接
+[LaunchAtLogin](https://github.com/sindresorhus/LaunchAtLogin)
+
+### 基础使用
+
+- 检测是否开启和设置开启
+```swift
+import LaunchAtLogin
+
+print(LaunchAtLogin.isEnabled)
+//=> false
+
+LaunchAtLogin.isEnabled = true
+
+print(LaunchAtLogin.isEnabled)
+//=> true
+```
+
+- SwiftUI 里使用
+```swift
+struct ContentView: View {
+	var body: some View {
+		LaunchAtLogin.Toggle {
+			Text("Launch at login")
+		}
+	}
+}
+```
+
+- 自定义设置
+```swift
+import SwiftUI
+import LaunchAtLogin
+
+struct ContentView: View {
+	@ObservedObject private var launchAtLogin = LaunchAtLogin.observable
+
+	var body: some View {
+		Toggle("Launch at login", isOn: $launchAtLogin.isEnabled)
+	}
+}
+```
+
+</details>
+
+<summary>3. 设置全局快捷键</summary>
+
+### 简介
+
+在 Mac 应用里我们会经常需要设置一些全局的快捷键，即使用户不处于当前应用的时候也可以打开应用，比如我们的应用里，可以在任何时候使用 Shift + Command + F 打开应用内的搜索框，进行搜索。我们可以使用 MASShortcut 这个开源库来设置我们应用的全局快捷键。
+
+
+### 链接
+[MASShortcut](https://github.com/cocoabits/MASShortcut)
+
+### 基础使用
+在我们的应用初始化的时候，调用下的方法。
+```swift
+private func configureShortcuts() {
+    // 打开通知内容
+    let push = MASShortcut(keyCode: kVK_ANSI_P, modifierFlags: [.command, .shift])
+
+    MASShortcutMonitor.shared().register(push, withAction: {
+        // 快捷键触发操作
+    })
+}
+```swift
+- kVK_ANSI_P 是我们触发的键，只需要修改后面的 P 即可，上面代码是使用 Command + Shift + P 触发快捷操作。
 
 </details>
