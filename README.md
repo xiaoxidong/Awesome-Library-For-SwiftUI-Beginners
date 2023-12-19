@@ -7,23 +7,23 @@
 # 目录
 [1. 数据存储](#1-数据存储)
 
-[2. 浮层](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#2-%E6%B5%AE%E5%B1%82)
+[2. 浮层](#2-浮层)
 
-[3. Toast](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#3-toast)
+[3. Toast](3-toast)
 
-[4. 日期](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#4-%E6%97%A5%E6%9C%9F)
+[4. 日期](4-日期)
 
-[5. 网络请求](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#5-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82)
+[5. 网络请求](5-网络请求)
 
-[6. Markdown](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#6-markdown)
+[6. Markdown](6-markdown)
 
-[7. 布局样式](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#7-%E5%B8%83%E5%B1%80%E6%A0%B7%E5%BC%8F)
+[7. 布局样式](7-布局样式)
 
-[8. Bug 追踪](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#8-bug-%E8%BF%BD%E8%B8%AA)
+[8. Bug 追踪](8-bug-追踪)
 
-[9. 新手引导](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#9-mac-%E5%B8%B8%E7%94%A8)
+[9. 新手引导](9-新手引导)
 
-[10. Mac 常用](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#9-mac-%E5%B8%B8%E7%94%A8)
+[10. Mac 常用](10-mac-常用)
 
 # 1. 数据存储
 <details>
