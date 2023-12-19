@@ -21,7 +21,9 @@
 
 [8. Bug 追踪](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#8-bug-%E8%BF%BD%E8%B8%AA)
 
-[9. Mac 常用](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#9-mac-%E5%B8%B8%E7%94%A8)
+[9. 新手引导](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#9-mac-%E5%B8%B8%E7%94%A8)
+
+[10. Mac 常用](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#9-mac-%E5%B8%B8%E7%94%A8)
 
 # 1. 数据存储
 <details>
@@ -291,6 +293,47 @@ AlertStyle(backgroundColor: Color?,
             subTitleFont: Font?)
 ```
 
+</details>
+
+<details>
+<summary>2. JDStatusBarNotification</summary>
+
+### 简介
+显示顶部的 Toast 样式，支持 SwiftUI 的 View 内容，也有很多特定的样式。
+
+### 链接
+[JDStatusBarNotification](https://github.com/calimarkus/JDStatusBarNotification)
+
+### 基础使用
+- 直接使用
+```swift
+struct NotificationView: View {
+    var body: some View {
+        Button {
+            NotificationPresenter.shared.updateDefaultStyle { style in
+               style.backgroundStyle.backgroundColor = .clear
+               style.textStyle.textColor = .white
+               style.textStyle.font = UIFont.preferredFont(forTextStyle: .title3)
+               // and many more options
+               return style
+            }
+
+            NotificationPresenter.shared.presentSwiftView {
+                Text("Hi from Swift!")
+                    .padding()
+                    .background(Color.red)
+                    .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
+            }
+
+            NotificationPresenter.shared.dismiss(after: 1) { presenter in
+               // ...
+            }
+        } label: {
+            Text("Show")
+        }
+    }
+}
+```
 </details>
 
 # 4. 日期
@@ -579,9 +622,27 @@ func imageView(with urlString: String, altTextView: AnyView?) -> AnyView
 - 在 Terminal 这个文件里，输入 bugsnag-dsym-upload 然后将 dSYMs 文件拖拽到 Terminal 里，回车上传。
 </details>
 
+# 9. 新手引导
+<details>
+<summary>1. ConcentricOnboarding</summary>
+
+### 简介
+下面这个第三方库可以作为一个新手引导的展示库，类似我们的 TabView 可以左右滑动展示内容。
+
+### 链接
+[ConcentricOnboarding](https://github.com/exyte/ConcentricOnboarding)
+
+### 基础使用
+```swift
+ConcentricOnboardingView(pageContents: [<your_page>, <your_background_color>])
+	.(duration: 2.0)
+```
 
 
-# 9. Mac 常用
+</details>
+
+
+# 10. Mac 常用
 <details>
 <summary>1. StatusBar 应用下拉关闭</summary>
 
