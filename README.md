@@ -5,7 +5,7 @@
 关于[「做个应用」](https://apps.apple.com/cn/app/%E5%81%9A%E4%B8%AA%E5%BA%94%E7%94%A8-swiftui-0-%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E5%BA%94%E7%94%A8/id1578873606)更多的详细介绍，可以[查看文章](https://juejin.cn/post/7308676997051072551).
 
 # 目录
-[1. 数据存储](#1. 数据存储)
+[1. 数据存储](#1-数据存储)
 
 [2. 浮层](https://github.com/xiaoxidong/Awesome-Library-For-SwiftUI-Beginners/blob/main/README.md#2-%E6%B5%AE%E5%B1%82)
 
